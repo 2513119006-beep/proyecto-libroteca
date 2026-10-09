@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Libroteca - Reto Final</title>
+</head>
+
+<body>
+    <header>
+        <h1>LIBROTECA</h1>
+        <nav>
+            <a href="index.php">Inicio</a>
+            <a href="libro.php">Catálogo</a>
+            <a href="contacto.php">Contacto</a>
+        </nav>
+    </header>
+
+    <main>
+        <section>
+            <h2>Catálogo de libros</h2>
+            <p>Estos son algunos de los libros disponibles en LIBROTECA. </p>
+
+            <ul>
+                <li>El Principito - $150</li>
+                <li>Bajo la misma estrella - $240</li>
+                <li>Cien años de soledad - $300</li>
+            </ul>
+        </section>
+
+
+        <section>
+            <h2>Solicitud de libro</h2>
+            <form>
+                <label for="nombre">Nombre:</label>
+                <input type="text"
+                       id="nombre"
+                       name="nombre"
+                       required>
+
+                <br><br>
+
+                <label for="libro">Selecciona un libro:</label>
+
+                <select id="libro" name="libro">
+
+                    <option value="principito">
+                        El Principito
+                    </option>
+
+                    <option value="bajo-la-misma-estrella">
+                        Bajo la misma estrella
+                    </option>
+
+                    <option value="cien-anos">
+                        Cien años de soledad
+                    </option>
+
+                </select>
+
+                <br><br>
+
+                <button type="submit">
+                    Enviar solicitud
+                </button>
+            </form>
+        </section>
+
+
+        <section>
+            <h2>Libro destacado</h2>
+            <figure>
+                <a href="libro.php">
+
+                    <img src="images/principito.jpg"
+                         alt="Portada del libro El Principito">
+
+                </a>
+
+                <figcaption>
+                    El Principito
+                </figcaption>
+            </figure>
+        </section>
+    </main>
+
+    <footer>
+        <p> &copy; 2026 Sherlyn Olvera Mera.Todos los derechos reservados.</p>
+
+    </footer>
+</body>
+</html>

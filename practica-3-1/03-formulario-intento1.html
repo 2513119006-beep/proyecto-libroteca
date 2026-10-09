@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <title>Libroteca - Solicitud de libro</title>
+
+    </head>
+    <body>
+        <header>
+            <h1>LIBROTECA</h1>
+            <nav>
+                <a href="index.php">Inicio</a>
+                <a href="libro.php">Catálogo</a>
+                <a href="contacto.php">Contacto</a>
+            </nav>
+        </header>
+
+        <main>
+            <h2>Solicitud de libro</h2>
+
+            <form>
+                <fieldset>
+                    <legend>Datos del solicitante</legend>
+
+                    <label for="nombre">Nombre completo:</label>
+                    <input type="text" id="nombre" name="nombre" required>
+
+                    <br><br>
+
+                    <label for="correo">Correo electrónico:</label>
+                    <input type="email" id="correo" name="correo" required>
+
+                    <br><br>
+
+                    <label for="telefono">Teléfono:</label>
+                    <input type="tel" id="telefono" name="telefono" required>
+
+                    <br><br>
+
+                    <label for="edad">Edad:</label>
+                    <input type="number" id="edad" name="edad" min="12" max="100" required>
+
+                </fieldset>
+
+                <br>
+
+                <label for="libro">Selecciona el libro que deseas:</label>
+
+                <select id="libro" name="libro">
+
+                    <option value="principito">El Principito</option>
+                    <option value="bajo-la-misma-estrella">Bajo la misma estrella</option>
+                    <option value="otro">Otro libro</option>
+
+                </select>
+                <br><br>
+                <label for="comentarios">Comentarios o solicitud especial:</label>
+
+                <br>
+
+                <textarea id="comentarios" name="comentarios" rows="5" cols="40"></textarea>
+                <br><br>
+                <button type="submit">Enviar solicitud</button>
+
+            </form>
+
+        </main>
+
+        <footer>
+            <p>&copy; 2026 Sherlyn Olvera Mera. Todos los derechos reservados.</p>
+
+        </footer>
+    </body>
+</html>

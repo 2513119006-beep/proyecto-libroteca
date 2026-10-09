@@ -1,0 +1,56 @@
+[
+    {
+        "id": 1,
+        "nombre": "Cien años de soledad",
+        "autor": "Gabriel García Márquez",
+        "categoria": "Novela",
+        "precio": 299.0,
+        "imagen": "img/sin-portada.svg",
+        "stock": 12
+    },
+    {
+        "id": 2,
+        "nombre": "Pedro Páramo",
+        "autor": "Juan Rulfo",
+        "categoria": "Novela",
+        "precio": 189.5,
+        "imagen": "img/sin-portada.svg",
+        "stock": 8
+    },
+    {
+        "id": 3,
+        "nombre": "El laberinto de la soledad",
+        "autor": "Octavio Paz",
+        "categoria": "Ensayo",
+        "precio": 220.0,
+        "imagen": "img/sin-portada.svg",
+        "stock": 5
+    },
+    {
+        "id": 4,
+        "nombre": "Rayuela",
+        "autor": "Julio Cortázar",
+        "categoria": "Novela",
+        "precio": 340.0,
+        "imagen": "img/sin-portada.svg",
+        "stock": 6
+    },
+    {
+        "id": 5,
+        "nombre": "Ficciones",
+        "autor": "Jorge Luis Borges",
+        "categoria": "Cuento",
+        "precio": 210.0,
+        "imagen": "img/sin-portada.svg",
+        "stock": 10
+    },
+    {
+        "id": 6,
+        "nombre": "El principito",
+        "autor": "Antoine de Saint-Exupéry",
+        "categoria": "Infantil",
+        "precio": 150.0,
+        "imagen": "img/sin-portada.svg",
+        "stock": 20
+    }
+]
