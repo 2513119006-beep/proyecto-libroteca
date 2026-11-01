@@ -1,18 +1,16 @@
-# Hallazgos de TiendaTec (`docs/checklist-ux.md`)
+# Hallazgos de Libroteca (`docs/checklist-ux.md`)
 
-Tareas evaluadas: (a) encontrar un producto de la categoría Periféricos, (b) abrir su ficha y regresar al catálogo, (c) agregar un producto nuevo. Recorridas en escritorio y en 375 px. Los hallazgos con prioridad "Sí" son los que se corrigen en el video.
+Tareas evaluadas: (a) encontrar un libro por su categoría, (b) abrir su ficha y regresar al catálogo, (c) agregar un libro nuevo. Recorridas en escritorio y en 375 px. Los hallazgos con prioridad "Sí" son los que se corrigen.
 
 | # | Heurística | Dónde ocurre | Sev. | Mejora (como acción) | Prioridad |
 |---|---|---|---|---|---|
-| 1 | H4 Consistencia y estándares | `producto-detalle` y `agregar-producto` no cargan `estilos.css` | 4 | Vincula `estilos.css` en todas las vistas | Sí |
-| 2 | H1 Visibilidad del estado | Menú de todas las vistas: no indica en cuál estás | 3 | Marca la página actual con `aria-current` y un subrayado | Sí |
-| 3 | H5 Prevención de errores y H10 Ayuda | Formulario: precio y existencias sin `required`, sin límites y sin texto de ayuda | 3 | Agrega `required`, `min` y `max`, y una línea de ayuda bajo cada campo | Sí |
-| 4 | H3 Control y libertad | `producto-detalle`: solo se regresa con el menú | 3 | Agrega una ruta de migas de pan | No |
-| 5 | H10 Ayuda y documentación | `contacto`: dice "Contáctanos" pero no da ningún medio | 3 | Agrega un correo de contacto | No |
-| 6 | Accesibilidad: contraste | Hover del menú 2.80, etiqueta de categoría 3.83, "Ver detalle" 4.11, botón "Agregar producto +" 4.11 | 3 | Oscurece `--color-acento` a `#1f6a8a` y quita el color de hover del menú | Sí |
-| 7 | H4 Consistencia (CSS) | Botón "Agregar producto +" sin relleno: `vac(` y `--espacio-base` mal escritos | 2 | Corrige los nombres para que usen `--espaciado-base` | No |
-| 8 | H2 Lenguaje del usuario | Menú "Catálgo"; "detallle"; `alt` "Detalle de foto" en todas las imágenes | 2 | Corrige la ortografía y describe cada foto en su `alt` | No |
-| 9 | H4 Consistencia | Todas las vistas repiten el `h1` "Bienvenido a Tienda Tec" | 2 | Escribe un `h1` que nombre la vista | No |
-| 10 | Estructura del documento | Sin `<!DOCTYPE html>`, `lang`, `meta charset` ni `meta viewport` | 2 | Agrega los cuatro en todas las vistas | No |
-| 11 | H8 Diseño minimalista | Pie de página pegado al borde y `<section>` sin cerrar en el formulario | 1 | Agrega `padding` al pie y cierra la sección | No |
-| 12 | H1 Visibilidad del estado | Formulario: al enviar no hay confirmación (`action="#"`) | 3 | Se resuelve con servidor en U3; anótalo como pendiente | No |
+| 1 | H1 Visibilidad del estado | Formulario `agregar-libro`: al enviar no hay confirmación y el libro no se guarda (`action="#"`) | 4 | Procesa el formulario con `method="post"`, guarda el libro en `datos.json` y muestra el mensaje "Libro agregado" | Sí |
+| 2 | H10 Ayuda y documentación | `contacto`: dice "Contáctanos" pero no da correo, teléfono ni formulario | 3 | Agrega un correo, un horario de atención y un formulario con nombre, correo y mensaje | Sí |
+| 3 | H9 Recuperarse de errores | `libro-detalle` con un id que no existe: solo aparece "Libro no encontrado." sin salida | 3 | Muestra un mensaje claro y un botón "Volver al catálogo" | Sí |
+| 4 | H3 Control y libertad | `libro-detalle`: solo se regresa con el menú | 2 | Agrega una ruta de migas de pan o un enlace "Volver al catálogo" | No |
+| 5 | H1 Visibilidad del estado | Menú de todas las vistas: "Inicio" siempre sale en negritas aunque estés en otra página | 2 | Marca la página actual con `aria-current` y un estilo subrayado, y quita el estilo de `nav a:first-child` | No |
+| 6 | H2 Lenguaje del usuario | Formulario: el campo "Imagen (ruta)" pide una ruta técnica como `img/mi-libro.jpg` | 2 | Cambia la etiqueta a "Portada (opcional)" y agrega una línea de ayuda | No |
+| 7 | H5 Prevención de errores | Formulario: los campos obligatorios no se distinguen hasta que falla el envío | 2 | Marca los obligatorios con asterisco y agrega la nota "* campo obligatorio" | No |
+| 8 | H8 Diseño minimalista | `index`: la sección "Libros destacados" solo trae una frase y no muestra libros | 2 | Muestra tres libros reales o quita la sección y agrega un botón "Ver catálogo" | No |
+| 9 | H4 Consistencia | `libros`: el título principal dice "Libros", y en las demás vistas "Bienvenido a Libroteca" | 1 | Usa el mismo título del sitio en todas las vistas | No |
+| 10 | H2 Lenguaje del usuario | `libros`: el botón dice "Agregar producto +" en un sitio de libros | 1 | Cambia el texto a "Agregar libro +" | No |
