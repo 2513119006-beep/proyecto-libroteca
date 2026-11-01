@@ -13,16 +13,19 @@ if (!$libro) { http_response_code(404); }
 <html lang="es">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Libroteca - Detalle libro</title>
     <link rel="stylesheet" href="assets/css/estilos.css">
 </head>
 <body>
     <header>
         <h1>Bienvenido a Libroteca</h1>
-        <nav class="menu-principal">
-            <a href="index.php">Inicio</a>
-            <a href="libros.php">Catálogo</a>
-            <a href="contacto.php">Contacto</a>
+        <nav aria-label="menu-principal">
+            <ul>
+                <li><a href="index.php">Inicio</a></li>
+                <li><a href="libros.php">Catálogo</a></li>
+                <li><a href="contacto.php">Contacto</a></li>
+            </ul>
         </nav>
     </header>
 
@@ -30,6 +33,14 @@ if (!$libro) { http_response_code(404); }
         <?php if (!$libro): ?>
             <p>Libro no encontrado.</p>
         <?php else: ?>
+            <nav class="migas" aria-label="Ruta de navegación">
+                <ol>
+                    <li><a href="index.php">Inicio</a></li>
+                    <li><a href="libros.php">Catálogo</a></li>
+                    <li aria-current="page"><?= htmlspecialchars($libro['nombre']) ?></li>
+                </ol>
+            </nav>
+
             <article class="tarjeta-libro">
                 <img src="<?= htmlspecialchars(!empty($libro['imagen']) ? $libro['imagen'] : 'img/sin-portada.svg') ?>" alt="Portada de <?= htmlspecialchars($libro['nombre']) ?>">
                 <h2><?= htmlspecialchars($libro['nombre']) ?></h2>
@@ -42,7 +53,7 @@ if (!$libro) { http_response_code(404); }
     </main>
 
     <footer>
-        <p>&copy; 2026 Libroteca. Todos los derechos reservados.</p>
+        <p>© 2026 Libroteca. Todos los derechos reservados.</p>
     </footer>
 </body>
 </html>

@@ -1,14 +1,14 @@
-/* 1. VARIABLES */
+/* 1. VARIABLES GLOBAL CREADAS */
 :root {
   --color-primario: #4a2c6d;
-  --color-acento: #e4d4f4;
+  --color-acento: #591966;
   --color-texto: #2b2b2b;
   --color-texto-suave: #5b5568;
   --color-texto-inverso: #ffffff;
   --color-fondo: #f8f5fc;
   --color-superficie: #ffffff;
   --color-borde: #ddd0ee;
-
+  --color-error: #b3261e;
   --fuente-base: Georgia, serif;
 
   --espacio-s: 0.5rem;
@@ -23,11 +23,6 @@
   --texto-secundario: 0.9rem;
 }
 
-/* ANÁLISIS: si en vez de variables usara el valor del color repetido en
-   cada regla, para cambiarlo tendría que buscarlo y editarlo en cada
-   lugar y podría olvidar alguno. Con una variable lo cambio una sola vez
-   en :root y se actualiza en todo el sitio. */
-
 /* 2. RESET MÍNIMO */
 *, *::before, *::after {
   box-sizing: border-box;
@@ -35,10 +30,6 @@
 
 body {
   margin: 0;
-}
-
-/* 3. TIPOGRAFÍA GENERAL */
-body {
   font-family: var(--fuente-base);
   font-size: var(--texto-base);
   line-height: 1.5;
@@ -60,58 +51,64 @@ p {
   color: var(--color-texto-suave);
 }
 
-/* ANÁLISIS (Ronda 4): uso rem en lugar de px porque rem depende del
-   tamaño de letra que la persona tiene configurado en su navegador
-   . Si alguien con poca vision sube ese tamaño en la
-   configuración de accesibilidad, todo el sitio crece con él: títulos,
-   precios y textos. Con px los tamaños quedan fijos y el navegador
-   ignora esa preferencia, asi que el usuario no puede leer comodo.
-   Por eso mi escala tipográfica está toda en rem. */
-
-
-/* 4. COMPONENTES */
+/* 3. COMPONENTES Y ESTRUCTURA GENERAL */
 header, footer {
   background: var(--color-primario);
   color: var(--color-texto-inverso);
   padding: var(--espacio-m) var(--espacio-l);
 }
 
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 header h1 {
   font-size: var(--texto-titulo);
   line-height: 1.2;
-  margin: 0 0 var(--espacio-s);
+  margin: 0;
 }
 
-.menu-principal {
+header nav ul {
   display: flex;
+  flex-direction: row;
+  list-style: none;
+  margin: 0;
+  padding: 0;
   gap: var(--espacio-m);
 }
 
-nav a {
-  color: var(--color-acento);
+header nav a {
+  color: var(--color-texto-inverso);
   text-decoration: none;
-}
-
-nav a:hover {
-  text-decoration: underline;
-}
-
-nav a:first-child {
   font-weight: bold;
+  padding: 0.5rem 1rem;
+  border-bottom: 3px solid transparent;
+  transition: border-color 0.2s ease, color 0.2s ease;
 }
 
-/* ANÁLISIS (Ronda 2): la especificidad de un selector de clase
-   (.menu-principal) es menor que la de un id (#menu): el id siempre gana
-   frente a cualquier cantidad de clases. Para sobrescribir un id tendria
-   que usar otro id o !important, y el CSS se vuelve difícil de cambiar.
-   Las clases se pueden reutilizar en varios elementos y se sobrescriben
-   fácilmente con otra clase del mismo peso, por eso hacen el CSS más
-   fácil de mantener. */
+header nav a:hover {
+  color: #007bff;
+  border-bottom: 3px solid #007bff;
+}
+
+header nav a[aria-current] {
+  color: #007bff;
+  border-bottom: 3px solid #007bff;
+}
 
 main {
   max-width: 900px;
   margin: var(--espacio-l) auto;
   padding: 0 var(--espacio-m);
+}
+
+/* CUADRÍCULA Y TARJETAS DE LIBROS */
+.grid-libros {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: var(--espacio-l);
 }
 
 .tarjeta-libro {
@@ -120,7 +117,7 @@ main {
   border-radius: 8px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
   padding: var(--espacio-m);
-  margin: 0 0 var(--espacio-m);
+  margin: 0;
 }
 
 .tarjeta-libro img {
@@ -158,40 +155,88 @@ main {
   font-weight: bold;
 }
 
-/* ANÁLISIS (Ronda 3): al cambiar el padding de la tarjeta se mueve el
-   espacio interno, entre el borde y el contenido; al cambiar el margin se
-   mueve el espacio externo, entre una tarjeta y la siguiente.
-   content-box suma el padding y el border por fuera del width, asi que
-   una caja de 300px con padding de 20px termina midiendo 340px y rompe el
-   ancho. border-box incluye padding y border dentro del width, y la caja
-   mide exactamente lo declarado. Por eso uso border-box de forma global. */
-
-label {
-  display: inline-block;
-  min-width: 140px;
-  margin-top: var(--espacio-m);
+/* 4. FORMULARIOS Y CAMPOS DE ENTRADA */
+form {
+  max-width: 400px;
 }
 
-button {
-  margin-top: var(--espacio-m);
-  padding: 0.6rem 1.2rem;
-  background: var(--color-primario);
-  color: var(--color-texto-inverso);
+.campo {
+  margin-bottom: var(--espacio-m);
+}
+
+label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 4px;
+  color: var(--color-texto);
+}
+
+input[type="text"],
+input[type="number"] {
+  width: 100%;
+  padding: 0.5rem;
+  font-size: var(--texto-base);
+  font-family: inherit;
+  border: 1px solid var(--color-borde);
+  border-radius: 4px;
+  background-color: var(--color-superficie);
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+}
+
+.boton-agregar, button[type="submit"] {
+  display: inline-block;
+  padding: calc(var(--espacio-s) * 1.5) calc(var(--espacio-m) * 1.5);
+  background-color: var(--color-acento);
+  color: white;
+  font: inherit;
+  font-weight: bold;
+  text-decoration: none;
   border: 0;
   border-radius: 4px;
   cursor: pointer;
+  margin-top: var(--espacio-s);
+  margin-bottom: var(--espacio-l);
 }
 
+button:hover, .boton-agregar:hover {
+  filter: brightness(1.2);
+}
 
-/* 5. UTILIDADES */
+/* ESTILOS PARA MIGAS DE PAN (Estructura del profesor) */
+.migas ol {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--espacio-s);
+  margin: calc(var(--espacio-s) * 2) 0;
+  padding: 0;
+}
 
+.migas a {
+  color: var(--color-acento);
+}
 
-/* COMPONENTES CONSTRUIDOS HOY (semilla del catálogo para U2S05 y U2S06):
-   - header y navegación (.menu-principal)
-   - tarjeta de libro (.tarjeta-libro)
-   - etiqueta de categoría (.etiqueta-categoria)
-   - precio (.tarjeta-libro-precio)
-   - enlace de detalle (.enlace-detalle)
-   - texto secundario (.texto-secundario)
-   - botón (button) y etiquetas de formulario (label)
-   - footer */
+.migas li + li::before {
+  content: "/";
+  margin-right: var(--espacio-s);
+}
+
+/* 5. ESTILOS DE VALIDACIÓN Y MENSAJES DE ERROR */
+.mensaje-error {
+  color: var(--color-error);
+  font-size: var(--texto-secundario);
+  margin-top: 0.25rem;
+  font-weight: bold;
+}
+
+input.input-error {
+  border-color: var(--color-error) !important;
+  outline: 1px solid var(--color-error);
+}
