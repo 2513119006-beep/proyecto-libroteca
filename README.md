@@ -7,6 +7,6 @@
 - `public/contacto.php`: contacto
 - `public/libros.php`: listado de libros
 - `public/libro-detalle.php`: ficha de un libro (`?id=`)
-- `public/alta-libro.php`: formulario para agregar un libro
+- `public/agregar-libro.php`: formulario para agregar un libro
 - `public/img/`: imagen de portada
 
